@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
         maven {
             name = 'forge'
-            url = 'http://files.minecraftforge.net/maven'
+            url = 'https://maven.minecraftforge.net/'
         }
         maven {
             name = 'sonatype'
@@ -82,6 +82,7 @@ repositories {
 
 dependencies {
     compile group: group, name: 'LunatriusCore', version: "${project.version_minecraft}-${project.version_lunatriuscore}", classifier: 'dev'
+    compile 'org.lwjgl:lwjgl-opengl:3.3.2'
 }
 
 def commonManifest = {

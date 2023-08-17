@@ -152,14 +152,14 @@ public class RendererSchematicChunk {
                     GL11.glEnableClientState(GL11.GL_COLOR_ARRAY);
 
                     if (quadCount > 0) {
-                        GL11.glVertexPointer(3, 0, RenderHelper.getQuadVertexBuffer());
-                        GL11.glColorPointer(4, 0, RenderHelper.getQuadColorBuffer());
+                        GL11.glVertexPointer(3, GL11.GL_FLOAT, 0, RenderHelper.getQuadVertexBuffer());
+                        GL11.glColorPointer(4, GL11.GL_UNSIGNED_BYTE, 0, RenderHelper.getQuadColorBuffer());
                         GL11.glDrawArrays(GL11.GL_QUADS, 0, quadCount);
                     }
 
                     if (lineCount > 0) {
-                        GL11.glVertexPointer(3, 0, RenderHelper.getLineVertexBuffer());
-                        GL11.glColorPointer(4, 0, RenderHelper.getLineColorBuffer());
+                        GL11.glVertexPointer(3, GL11.GL_FLOAT, 0, RenderHelper.getQuadVertexBuffer());
+                        GL11.glColorPointer(4, GL11.GL_UNSIGNED_BYTE, 0, RenderHelper.getQuadColorBuffer());
                         GL11.glDrawArrays(GL11.GL_LINES, 0, lineCount);
                     }
 

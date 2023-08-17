@@ -4,12 +4,15 @@ import com.github.lunatrius.schematica.api.ISchematic;
 import com.github.lunatrius.schematica.api.event.PostSchematicCaptureEvent;
 import com.github.lunatrius.schematica.reference.Names;
 import com.github.lunatrius.schematica.reference.Reference;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 
+import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.GZIPOutputStream;
@@ -54,9 +57,12 @@ public abstract class SchematicFormat {
             FORMATS.get(FORMAT_DEFAULT).writeToNBT(tagCompound, schematic);
 
             DataOutputStream dataOutputStream = new DataOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
-
+            Method indexOfMethod = NBTTagCompound.class.getDeclaredMethod("func_150298_a", String.class, NBTBase.class, DataOutput.class);
+            indexOfMethod.setAccessible(true);
             try {
-                NBTTagCompound.func_150298_a(Names.NBT.ROOT, tagCompound, dataOutputStream);
+                indexOfMethod.invoke(NBTTagCompound.class, Names.NBT.ROOT, tagCompound, dataOutputStream);
+            } catch (Exception ex) {
+                Reference.logger.error("Failed to write schematic to file!", ex);
             } finally {
                 dataOutputStream.close();
             }
