@@ -180,7 +180,7 @@ public abstract class CommonProxy {
             final short height = (short) (Math.abs(maxY - minY) + 1);
             final short length = (short) (Math.abs(maxZ - minZ) + 1);
 
-            final ISchematic schematic = new Schematic(SchematicUtil.getIconFromName(iconName), width, height, length);
+            final ISchematic schematic = new Schematic(SchematicUtil.getIconFromName(iconName), width, height, length, minX, minY, minZ);
             final SchematicContainer container = new SchematicContainer(schematic, player, world, new File(directory, filename), minX, maxX, minY, maxY, minZ, maxZ);
             QueueTickHandler.INSTANCE.queueSchematic(container);
 

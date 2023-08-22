@@ -212,8 +212,11 @@ public class SchematicWorld extends World {
         final int width = this.schematic.getWidth();
         final int height = this.schematic.getHeight();
         final int length = this.schematic.getLength();
+        final int minX = this.schematic.getMinX();
+        final int minY = this.schematic.getMinY();
+        final int minZ = this.schematic.getMinZ();
 
-        final ISchematic schematicRotated = new Schematic(icon, length, height, width);
+        final ISchematic schematicRotated = new Schematic(icon, length, height, width, minX, minY, minZ);
 
         for (int y = 0; y < height; y++) {
             for (int z = 0; z < length; z++) {

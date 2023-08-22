@@ -26,8 +26,11 @@ public class Schematic implements ISchematic {
     private final int width;
     private final int height;
     private final int length;
+    private final int minX;
+    private final int minY;
+    private final int minZ;
 
-    public Schematic(final ItemStack icon, final int width, final int height, final int length) {
+    public Schematic(final ItemStack icon, final int width, final int height, final int length, final int minX, final int minY, final int minZ) {
         this.icon = icon;
         this.blocks = new short[width][height][length];
         this.metadata = new byte[width][height][length];
@@ -35,6 +38,10 @@ public class Schematic implements ISchematic {
         this.width = width;
         this.height = height;
         this.length = length;
+
+        this.minX = minX;
+        this.minY = minY;
+        this.minZ = minZ;
     }
 
     @Override
@@ -189,6 +196,21 @@ public class Schematic implements ISchematic {
     @Override
     public int getHeight() {
         return this.height;
+    }
+
+    @Override
+    public int getMinX() {
+        return this.minX;
+    }
+
+    @Override
+    public int getMinY() {
+        return this.minY;
+    }
+
+    @Override
+    public int getMinZ() {
+        return this.minZ;
     }
 
     private boolean isValid(final int x, final int y, final int z) {

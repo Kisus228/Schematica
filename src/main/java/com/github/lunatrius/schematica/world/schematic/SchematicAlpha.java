@@ -53,6 +53,10 @@ public class SchematicAlpha extends SchematicFormat {
         short length = tagCompound.getShort(Names.NBT.LENGTH);
         short height = tagCompound.getShort(Names.NBT.HEIGHT);
 
+        int minX = tagCompound.getInteger(Names.NBT.X);
+        int minY = tagCompound.getInteger(Names.NBT.Y);
+        int minZ = tagCompound.getInteger(Names.NBT.Z);
+
         Short id = null;
         Map<Short, Short> oldToNew = new HashMap<Short, Short>();
         if (tagCompound.hasKey(Names.NBT.MAPPING_SCHEMATICA)) {
@@ -63,7 +67,7 @@ public class SchematicAlpha extends SchematicFormat {
             }
         }
 
-        ISchematic schematic = new Schematic(icon, width, height, length);
+        ISchematic schematic = new Schematic(icon, width, height, length, minX, minY, minZ);
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 for (int z = 0; z < length; z++) {
@@ -106,6 +110,10 @@ public class SchematicAlpha extends SchematicFormat {
         tagCompound.setShort(Names.NBT.WIDTH, (short) schematic.getWidth());
         tagCompound.setShort(Names.NBT.LENGTH, (short) schematic.getLength());
         tagCompound.setShort(Names.NBT.HEIGHT, (short) schematic.getHeight());
+
+        tagCompound.setInteger(Names.NBT.X, schematic.getMinX());
+        tagCompound.setInteger(Names.NBT.Y, schematic.getMinY());
+        tagCompound.setInteger(Names.NBT.Z, schematic.getMinZ());
 
         int size = schematic.getWidth() * schematic.getLength() * schematic.getHeight();
         byte localBlocks[] = new byte[size];

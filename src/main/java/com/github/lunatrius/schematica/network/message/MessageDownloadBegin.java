@@ -15,6 +15,9 @@ public class MessageDownloadBegin implements IMessage, IMessageHandler<MessageDo
     public int width;
     public int height;
     public int length;
+    public int minX;
+    public int minY;
+    public int minZ;
 
     public MessageDownloadBegin() {
     }
@@ -24,6 +27,9 @@ public class MessageDownloadBegin implements IMessage, IMessageHandler<MessageDo
         this.width = schematic.getWidth();
         this.height = schematic.getHeight();
         this.length = schematic.getLength();
+        this.minX = schematic.getMinX();
+        this.minY = schematic.getMinY();
+        this.minZ = schematic.getMinZ();
     }
 
     @Override
@@ -32,6 +38,9 @@ public class MessageDownloadBegin implements IMessage, IMessageHandler<MessageDo
         this.width = buf.readShort();
         this.height = buf.readShort();
         this.length = buf.readShort();
+        this.minX = buf.readInt();
+        this.minY = buf.readInt();
+        this.minZ = buf.readInt();
     }
 
     @Override
@@ -40,11 +49,14 @@ public class MessageDownloadBegin implements IMessage, IMessageHandler<MessageDo
         buf.writeShort(this.width);
         buf.writeShort(this.height);
         buf.writeShort(this.length);
+        buf.writeInt(this.minX);
+        buf.writeInt(this.minY);
+        buf.writeInt(this.minZ);
     }
 
     @Override
     public IMessage onMessage(MessageDownloadBegin message, MessageContext ctx) {
-        DownloadHandler.INSTANCE.schematic = new Schematic(message.icon, message.width, message.height, message.length);
+        DownloadHandler.INSTANCE.schematic = new Schematic(message.icon, message.width, message.height, message.length, message.minX, message.minY, message.minZ);
 
         return new MessageDownloadBeginAck();
     }

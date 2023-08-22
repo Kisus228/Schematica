@@ -208,6 +208,10 @@ public final class Names {
         public static final String TILE_ENTITIES = "TileEntities";
         public static final String ENTITIES = "Entities";
         public static final String EXTENDED_METADATA = "ExtendedMetadata";
+
+        public static final String X = "x";
+        public static final String Y = "y";
+        public static final String Z = "z";
     }
 
     public static final class SBC {

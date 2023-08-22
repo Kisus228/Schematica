@@ -156,4 +156,10 @@ public interface ISchematic {
      * @return the schematic height
      */
     int getHeight();
+
+    int getMinX();
+
+    int getMinY();
+
+    int getMinZ();
 }
