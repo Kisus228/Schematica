@@ -139,7 +139,9 @@ public class RendererSchematicChunk {
                 renderBlocks(pass, minX, minY, minZ, maxX, maxY, maxZ);
                 GL11.glEndList();
 
-                GL11.glNewList(this.glListHighlight + pass, GL11.GL_COMPILE);
+                //TODO [KISUS]: отвечает за выделение синим цветом загруженной схемы. Блоки всё равно рендерятся.
+                //TODO: При желании можно пофиксить
+                /*GL11.glNewList(this.glListHighlight + pass, GL11.GL_COMPILE);
                 int quadCount = RenderHelper.getQuadCount();
                 int lineCount = RenderHelper.getLineCount();
 
@@ -169,7 +171,7 @@ public class RendererSchematicChunk {
                     GL11.glEnable(GL11.GL_TEXTURE_2D);
                 }
 
-                GL11.glEndList();
+                GL11.glEndList();*/
             }
 
             RenderHelper.destroyBuffers();
